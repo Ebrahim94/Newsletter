@@ -29,25 +29,36 @@ app.post('/', function(req,res){
   var jsonData = JSON.stringify(data);
 
   var options = {
-    url: "https://us20.api.mailchimp.com/3.0/lists/Unique-ID/",
+    url: "https://us20.api.mailchimp.com/3.0/lists/058ce9fc0e/",
     method:"POST",
     headers:{
-      "Authorization": "zeus API-KEY"
+      "Authorization": "zeus 0eb7a0b16da92c7a94926a028c47746f-us20"
     },
     body:jsonData
   }
   request(options, function(error, response, body){
-    if (error){
-      console.log(error)
-    } else {
-      console.log(response.statusCode)
+
+    if(error){
+      res.sendFile(__dirname + "/failure.html")
+    } else{
+      if(response.statusCode === 200){
+        res.sendFile(__dirname + "/success.html")
+      }
+      else{
+        res.sendFile(__dirname + "/failure.html")
+      }
     }
+
   });
 
-  console.log(firstName, lastName, email)
+  console.log(firstName, lastName, email);
+})
+
+app.post('/failure', function(req, res){
+  res.redirect("/")
 })
 
 
-app.listen(4000, function(){
-  console.log("You are connected via port 4000");
+app.listen(process.env.PORT || 3000, function(){
+  console.log("You are connected");
 })
