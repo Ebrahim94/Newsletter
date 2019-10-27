@@ -29,10 +29,10 @@ app.post('/', function(req,res){
   var jsonData = JSON.stringify(data);
 
   var options = {
-    url: "https://us20.api.mailchimp.com/3.0/lists/058ce9fc0e/",
+    url: "https://us20.api.mailchimp.com/3.0/lists/Unique-Id/",
     method:"POST",
     headers:{
-      "Authorization": "zeus 0eb7a0b16da92c7a94926a028c47746f-us20"
+      "Authorization": "zeus API key"
     },
     body:jsonData
   }
